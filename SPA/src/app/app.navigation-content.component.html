@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-md-12">
+            <div style="border-bottom: solid 1px rgba(19, 67, 91, 0.40);">
+                <h2 style="color:#13435b;">{{title}}</h2>
+            </div>
+            <div class="container row" style="margin-top:25px;" *ngFor="let link of links;">
+                <div class="col-md-12">
+                    <a href="{{link.URL}}" target="_blank">{{link.Title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<ul id="tree1">
+    <li *ngFor="let node of nodes;">
+        <button><a *ngIf="node.children == null" (click)="MenuOnClick(node.id, node.name)">{{node.name}}</a></button>
+        <span *ngIf="node.children != null">{{node.name}}</span>
+        <navigation-list *ngIf="node.children != null" [nodeList]="node.children" ></navigation-list>
+    </li>
+</ul>
