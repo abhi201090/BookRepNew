@@ -122,17 +122,10 @@ var GetNavigationContent = function (req, res) {
             dbReq.query(' SELECT T1.Title,T1.URL, T2.Name FROM [dbo].[MenuLinks] AS T1 ' +
                 'JOIN [dbo].[Menu] AS T2 ON T1.MenuID = T2.ID ' +
                 'WHERE T1.MenuID = ' + req.params.id, (err, result) => {
-<<<<<<< HEAD
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-=======
                     if(err){
                         console.log(err);
                     }
                     else{
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
                         res.setHeader('Content-Type', 'application/json');
                         res.end(JSON.stringify(result.recordset));
                         res.end('Hello World');
