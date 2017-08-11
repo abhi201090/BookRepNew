@@ -4,11 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Rx';
 import { menu } from './lib/menu';
-<<<<<<< HEAD
 import {} from 'ngx-bootstrap/ng2-bootstrap';
-=======
-import { isBs3 } from 'ngx-bootstrap/ng2-bootstrap';
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
 import { NavigationList } from './app.navigation-list.component';
 import { MenuList } from './lib/MenuList';
 import { Routes } from '@angular/router';
@@ -34,10 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.nodes = r;
             console.log(this.nodes);
             var navMenu = new menu();
-<<<<<<< HEAD
             //console.log(r);
-=======
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
         });
     }
 
@@ -46,10 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     private GetMenuList(): Observable<MenuList[]> {
-<<<<<<< HEAD
         //return this._http.get('http://localhost:4300/GetNavigationList').map((r: Response) => <MenuList[]>r.json());
-=======
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
         return this._http.get('http://localhost:4300/GetNavigationList').map((r: Response) => <MenuList[]>r.json());
     }
 

@@ -18,12 +18,9 @@ console.log('loop');
 
 var http = require('http');
 var express = require('express'), cors = require('cors');
-<<<<<<< HEAD
 var mongoClient = require('mongodb').MongoClient;
 var mongoURL = 'mongodb://localhost:27017/Handbook';
 
-=======
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
 
 var service = express();
 var port = 4300;
@@ -31,10 +28,7 @@ service.listen(port);
 service.use(cors());
 
 var GetNavigationList = function (req, res) {
-<<<<<<< HEAD
     /*
-=======
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
     var menuList = [];
     const pool = new sql.ConnectionPool(config);
     pool.connect(err => {
@@ -93,7 +87,6 @@ var GetNavigationList = function (req, res) {
             });
         }
     });
-<<<<<<< HEAD
     */
 
     mongoClient.connect(mongoURL, function (err, db) {
@@ -114,8 +107,6 @@ var GetNavigationList = function (req, res) {
             });
         }
     });
-=======
->>>>>>> 311d2e1de6add5c4e25aa9ae31f4daefa4f64f09
 }
 
 var GetNavigationContent = function (req, res) {
