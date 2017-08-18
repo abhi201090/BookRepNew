@@ -4,6 +4,8 @@ import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
 import {ActivatedRoute} from '@angular/router';
 import {Links} from './lib/links';
+import {UploadModal} from './app.upload-modal.component';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
     selector:'navigation-content',
@@ -16,7 +18,8 @@ export class NavigationContent implements OnInit,OnDestroy {
     sub:any;
     title:string;
     links:any;
-    constructor(private route:ActivatedRoute, private _http:Http){
+    bsModalRef: BsModalRef;
+    constructor(private route:ActivatedRoute, private _http:Http,private bsModalService:BsModalService){
 
     }
 
@@ -37,5 +40,10 @@ export class NavigationContent implements OnInit,OnDestroy {
 
     private GetContent(id):Observable<any>{
       return this._http.get('http://localhost:4300/GetNavigationContent/'+id).map((r:Response) => r.json());
+    }
+
+    private ShowModal(){
+      
+        this.bsModalService.show(UploadModal);
     }
 }

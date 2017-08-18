@@ -1,36 +1,36 @@
-
+//References
+var config = require('./config/config.js');
 const sql = require('mssql');
-const config = {
-    user: 'sa',
-    password: 'nailcutter',
-    server: 'W0044962',
-    database: 'HandbookNew',
-    options: {
-        trustedConnection: true,
-        port: '45179',
-        instanceName: 'SQL2012'
-    }
-};
-
-var flag = true;
-
-console.log('loop');
-
-var http = require('http');
-var express = require('express'), cors = require('cors');
+var express = require('express');
+var cors = require('cors');
+var azure = require('azure-storage');
 var mongoClient = require('mongodb').MongoClient;
-var mongoURL = 'mongodb://localhost:27017/Handbook';
-
-
 var service = express();
-var port = 4300;
-service.listen(port);
+var multer = require('multer');
+var moment = require('moment');
+var bodyParser = require('body-parser');
+var fs = require('fs');
+var http = require('http');
+
+//configure storage
+var storage = multer.diskStorage({
+    destination:'./tmpUploads',
+    filename: function(req,file,callback){
+        var fileName = moment().format('YYYYMMDD')+'_'+file.originalname;
+        callback(null,fileName);
+    }
+});
+var upload = multer({storage:storage}).single('file');
+
+//Start service
+service.listen(config.port);
 service.use(cors());
 
+//API list
+//Get menu list
 var GetNavigationList = function (req, res) {
-    /*
     var menuList = [];
-    const pool = new sql.ConnectionPool(config);
+    const pool = new sql.ConnectionPool(config.config);
     pool.connect(err => {
         if (err) {
             console.log(err);
@@ -75,7 +75,6 @@ var GetNavigationList = function (req, res) {
                             var finalList = menuList.filter(function (menu) {
                                 return menu.parentID === null;
                             });
-                            console.log(finalList);
                             res.setHeader('Content-Type', 'application/json');
                             res.end(JSON.stringify(finalList.sort(function (menu1, menu2) {
                                 return menu1.id - menu2.id;
@@ -87,8 +86,8 @@ var GetNavigationList = function (req, res) {
             });
         }
     });
-    */
-
+    
+    /*
     mongoClient.connect(mongoURL, function (err, db) {
         if (err) {
             console.log(err);
@@ -106,9 +105,10 @@ var GetNavigationList = function (req, res) {
                 }
             });
         }
-    });
+    });*/
 }
 
+//Get menu content
 var GetNavigationContent = function (req, res) {
     const pool = new sql.ConnectionPool(config);
     pool.connect(err => {
@@ -128,7 +128,6 @@ var GetNavigationContent = function (req, res) {
                     else{
                         res.setHeader('Content-Type', 'application/json');
                         res.end(JSON.stringify(result.recordset));
-                        res.end('Hello World');
                         pool.close();
                     }
                 });
@@ -137,8 +136,27 @@ var GetNavigationContent = function (req, res) {
     });
 }
 
+//Upload file
+var UploadFile = function(req,res){
+    /*
+    var azureService = config.azure.createBlobService(config.account,config.key);
+    azureService.createContainerIfNotExists('Test', function(err,result,response){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log('container created');
+            azureService.createBlockBlobFromLocalFile('Test',req.file.origin)
+        }
+    });*/
+    console.log(req.body);
+    console.log(req.file.originalname);
+}
+
+//Map API
 service.route('/GetNavigationList').get(GetNavigationList);
 service.route('/GetNavigationContent/:id').get(GetNavigationContent);
+//service.route('/upload').post(UploadFile);
+service.post('/upload', upload,UploadFile);
 
-console.log('Server running on ' + port);
-
+console.log('Server running on ' + config.port);

@@ -9,14 +9,17 @@ import {Home} from './app.home.component';
 import {Fake} from './app.fake.component';
 import {NavigationContent} from './app.navigation-content.component';
 import {appRoutingProviders,routing} from './app.routes';
+import {UploadModal} from './app.upload-modal.component';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
-    AppComponent, NavigationList, RouteTest, Home, NavigationContent, Fake
+    AppComponent, NavigationList, RouteTest, Home, NavigationContent, Fake, UploadModal
   ],
   imports: [
-    BrowserModule, HttpModule, FormsModule, routing
+    BrowserModule, HttpModule, FormsModule, routing, ModalModule.forRoot()
   ],
+  entryComponents:[UploadModal],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })

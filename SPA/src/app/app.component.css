@@ -221,3 +221,17 @@
     word-wrap: break-word;
 }
 
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important; 
+}
+.form-control{
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+
+[hidden] {
+    display: none !important;
+  }

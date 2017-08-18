@@ -1,0 +1,32 @@
+<div class="modal-content">
+        <div class="modal-header">
+                <div class="modal-title">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="this.bsModalRef.hide()">&times;</button>
+                        <h4 style="color:#13435b;">Upload File</h4>
+                </div>
+        </div>
+        <div class="modal-body">
+                <form>
+                        <div class="form-group">
+                                <label for="title">Title</label>
+                                <input class="form-control" id="title" type="text">
+                        </div>
+                        <div class="form-group">
+                                <label for="author">Author</label>
+                                <input class="form-control" id="author" type="text">
+                        </div>
+                        <div class="form-group">
+                                <label class="btn btn-md" style="background-color:#e8e8e8; color:black; border-radius: 0; border:solid #cccccc 1px;">
+                                        Browse<input type="file" id="file" class="custom-file-input" hidden data-filename-placement="inside" onchange="$('#upload-file-info').html(this.files[0].name)">
+                                        
+                                </label>
+                                <span class='label label-info' id="upload-file-info">No file chosen</span>
+                        </div>
+
+                        <button class="btn btn-md" style="background-color: #166EA1; color:white; border-radius: 0;" (click)="Close()">Upload</button>
+                </form>
+
+        </div>
+        <div class="modal-footer">
+        </div>
+</div>
